@@ -48,7 +48,7 @@ function Menu() {
         </li> */}
 
         {routes.map(route => (
-          <li>
+          <li key={route.to}>
             <NavLink
               style={({ isActive }) => ({
                 color: isActive ? 'red' : 'blue',
@@ -59,7 +59,6 @@ function Menu() {
             </NavLink>
           </li>
         ))}
-        {console.log(routes)}
       </ul>
     </nav>
   );
