@@ -17,7 +17,6 @@ function ProfilePage() {
     return (
       <>
         <h1>Por favor, inicia sesión.</h1>
-        {console.error(`El error es el siguiente: ${e.message}`)}
       </>
       );
   } 
