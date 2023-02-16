@@ -3,7 +3,7 @@ blogdata.push({
   title: '¿Que es React.js?',
   slug: 'que-es-reactjs',
   content: 'React es el mejor framework de Javascript',
-  author: 'Erick Riaño',
+  author: 'eri',
 });
 blogdata.push({
   title: '¿Que es Vue?',
