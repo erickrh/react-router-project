@@ -10,9 +10,8 @@ function BlogPost() {
   const blogpost = blogdata.find(post => post.slug === slug);
 
   const auth = useAuth();
-  const canDelete = auth.user?.isAdmin || (blogpost.author === auth.user?.username);
-  const canEdit = auth.user?.isEditor;
-  const canTest = auth.user?.isTester;
+  const authorityDelet = auth.user?.Isrol?.rol.delete;
+  const authorityEdit = auth.user?.Isrol?.rol.write;
   
   // Acepta ruta fija (/blog) o dinamica (/blog/:slug), o incluso -1. Puede usarse también para eventos como por ejemplo si alguien no se ha autenticado a los 30 segundos redireccione a otra ruta.
   const returnToBlog = () => navigate('/blog');
@@ -25,19 +24,12 @@ function BlogPost() {
       <code>Author: {blogpost.author}</code>
       <p>{blogpost.content}</p>
 
-      {canDelete && (
-        <>
+      {authorityDelet && (
           <button>Eliminar</button>
-          <button>Editar</button>
-        </>
       )}
 
-      {canEdit && (
+      {authorityEdit && (
         <button>Editar</button>
-      )}
-
-      {canTest && (
-        <button>Testear</button>
       )}
 
     </>

@@ -2,9 +2,27 @@
 import React from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 
-const adminList = ['Erick', 'e93'];
-const editorList = ['Juanito', 'Alimañana'];
-const testerList = ['Pepito'];
+const roles = {
+  admin: {
+    write: true,
+    delete: true,
+  },
+  editor: {
+    write: true,
+    delete: false,
+  },
+};
+
+const users = [
+  {
+    name: 'Erick',
+    rol: roles.admin,
+  },
+  {
+    name: 'e93',
+    rol: roles.editor,
+  },
+];
 
 const AuthContext = React.createContext();
 
@@ -13,16 +31,8 @@ function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
 
   const login = ({ username }) => {
-    const isAdmin = adminList.find(admin => admin === username);
-    const isEditor = editorList.find(admin => admin === username);
-    const isTester = testerList.find(admin => admin === username);
-
-    setUser({
-      username,
-      isAdmin,
-      isEditor,
-      isTester
-    });
+    const Isrol = users.find(user => (user.name === username) ? user.rol : null);
+    setUser({ username, Isrol });
     navigate('/profile');
   };
 
