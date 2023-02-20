@@ -1,12 +1,12 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
-import { Menu } from "./Menu";
-import { AuthProvider, AuthRoute } from "./auth";
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import { Menu } from './Menu';
+import { AuthProvider, AuthRoute } from './auth';
 import { HomePage } from './HomePage';
-import { BlogPage } from "./BlogPage";
-import { ProfilePage } from "./ProfilePage";
-import { BlogPost } from "./BlogPost";
-import { LoginPage } from "./LoginPage";
-import { LogoutPage } from "./LogoutPage";
+import { BlogPage } from './BlogPage';
+import { ProfilePage } from './ProfilePage';
+import { BlogPost } from './BlogPost';
+import { LoginPage } from './LoginPage';
+import { LogoutPage } from './LogoutPage';
 
 function App() {
   return (

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 // eslint-disable-next-line no-unused-vars
-import { Link, NavLink } from "react-router-dom";
-import { useAuth } from "./auth";
+import { Link, NavLink } from 'react-router-dom';
+import { useAuth } from './auth';
 
 function Menu() {
   const auth = useAuth();
@@ -24,7 +24,7 @@ function Menu() {
               >
                 {route.text}
               </NavLink>
-          </li>
+            </li>
           );
         })}
       </ul>

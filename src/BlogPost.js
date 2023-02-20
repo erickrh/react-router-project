@@ -1,7 +1,7 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { blogdata } from "./blogdata";
-import { useAuth } from "./auth";
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { blogdata } from './blogdata';
+import { useAuth } from './auth';
 
 function BlogPost() {
   const navigate = useNavigate();
@@ -10,10 +10,10 @@ function BlogPost() {
   const blogpost = blogdata.find(post => post.slug === slug);
 
   const auth = useAuth();
-  const authorityDelet = auth.user?.Isrol?.rol.delete;
+  const authorityDelete = auth.user?.Isrol?.rol.delete;
   const authorityEdit = auth.user?.Isrol?.rol.write;
   
-  // Acepta ruta fija (/blog) o dinamica (/blog/:slug), o incluso -1. Puede usarse también para eventos como por ejemplo si alguien no se ha autenticado a los 30 segundos redireccione a otra ruta.
+  // Acepta ruta fija (/blog) o dinámica (/blog/:slug), o incluso -1. Puede usarse también para eventos como por ejemplo si alguien no se ha autenticado a los 30 segundos redireccione a otra ruta.
   const returnToBlog = () => navigate('/blog');
 
 
@@ -24,8 +24,8 @@ function BlogPost() {
       <code>Author: {blogpost.author}</code>
       <p>{blogpost.content}</p>
 
-      {authorityDelet && (
-          <button>Eliminar</button>
+      {authorityDelete && (
+        <button>Eliminar</button>
       )}
 
       {authorityEdit && (
@@ -34,6 +34,6 @@ function BlogPost() {
 
     </>
   );
-};
+}
 
 export { BlogPost };

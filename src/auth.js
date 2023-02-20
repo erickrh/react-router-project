@@ -1,6 +1,6 @@
 // El nombre auth.js en minusculas es porque se estará realizando múltiples export de componentes, no es solo uno.
-import React from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 const roles = {
   admin: {
@@ -44,23 +44,23 @@ function AuthProvider({ children }) {
   const auth = { user, login, logout };
 
   return (
-      <AuthContext.Provider value={auth}>
-        {children}
-      </AuthContext.Provider>
-    );
+    <AuthContext.Provider value={auth}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 function useAuth() {
   const auth = React.useContext(AuthContext);
   return auth;
-};
+}
 
 function AuthRoute(props) {
   const auth = useAuth();
 
   if (!auth.user) {
     return <Navigate to='/login' />;
-  };
+  }
   
   return props.children;
 }
