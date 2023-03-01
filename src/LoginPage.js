@@ -6,14 +6,13 @@ function LoginPage() {
   const auth = useAuth();
   const [username, setUsername] = React.useState('');
 
-
   const login = e => {
     e.preventDefault();
     auth.login({ username });
   };
 
   if (auth.user) {
-    return <Navigate to={'/profile'} />;
+    return auth.myPath ? <Navigate to={auth.myPath} /> : <Navigate to={'/profile'} />;
   }
 
   return (

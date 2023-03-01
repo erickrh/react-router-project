@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { blogdata } from './blogdata';
 
-function BlogPage() {
+function BlogPage({ blogDataContent }) {
   return (
     <>
       <h1>BlogPage</h1>
@@ -10,7 +9,7 @@ function BlogPage() {
       <Outlet /> {/* Permite trabajar con nested routes */}
 
       <ul>
-        {blogdata.map(post => (
+        {blogDataContent.map(post => (
           <BlogLink post={post} key={post.slug} />
         ))}
       </ul>

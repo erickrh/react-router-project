@@ -1,6 +1,7 @@
 // El nombre auth.js en minusculas es porque se estará realizando múltiples export de componentes, no es solo uno.
 import React from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const roles = {
   admin: {
@@ -28,20 +29,29 @@ const AuthContext = React.createContext();
 
 function AuthProvider({ children }) {
   const navigate = useNavigate();
+
   const [user, setUser] = React.useState(null);
+
+  const [myPath, setMypath] = React.useState(null);
 
   const login = ({ username }) => {
     const Isrol = users.find(user => (user.name === username) ? user.rol : null);
     setUser({ username, Isrol });
-    navigate('/profile');
+    // navigate('/profile');
   };
 
   const logout = () => {
     setUser(null);
     navigate('/');
   };
-
-  const auth = { user, login, logout };
+  
+  const auth = {
+    user,
+    myPath,
+    setMypath,
+    login,
+    logout,
+  };
 
   return (
     <AuthContext.Provider value={auth}>
@@ -57,11 +67,15 @@ function useAuth() {
 
 function AuthRoute(props) {
   const auth = useAuth();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    auth.setMypath(location.pathname);
+  }, []);
 
   if (!auth.user) {
-    return <Navigate to='/login' />;
+    return <Navigate to={'/login'} />;
   }
-  
   return props.children;
 }
 

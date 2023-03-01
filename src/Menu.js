@@ -59,6 +59,11 @@ routes.push({
   text: 'Logout',
   private: true,
 });
+routes.push({
+  to: '/privado',
+  text: 'Privado',
+  private: true,
+});
 
 
 export { Menu };
