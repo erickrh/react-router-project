@@ -5,6 +5,7 @@ import { useAuth } from './auth';
 function LoginPage() {
   const auth = useAuth();
   const [username, setUsername] = React.useState('');
+  // const userSlug = auth.user?.userContent?.slug;
 
   const login = e => {
     e.preventDefault();
@@ -12,7 +13,8 @@ function LoginPage() {
   };
 
   if (auth.user) {
-    return auth.myPath ? <Navigate to={auth.myPath} /> : <Navigate to={'/profile'} />;
+    // return auth.myPath ? <Navigate to={auth.myPath} /> : <Navigate to={`/profile/${userSlug}`} />;
+    return auth.myPath ? <Navigate to={auth.myPath} /> : <Navigate to={`/`} />;
   }
 
   return (

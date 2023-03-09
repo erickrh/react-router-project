@@ -9,6 +9,7 @@ import { LoginPage } from './LoginPage';
 import { LogoutPage } from './LogoutPage';
 import { usePosts } from './usePosts';
 import { PrivadoPage } from './PrivadoPage';
+import { RegisterPage } from './RegisterPage';
 
 function App() {
   const {
@@ -40,14 +41,9 @@ function App() {
               />
             </Route>
 
-            <Route
-              path="/profile"
-              element={
-                <AuthRoute>
-                  <ProfilePage />
-                </AuthRoute>
-              }
-            />
+            <Route path="/profile/:slug" element={<ProfilePage />} />
+            
+            <Route path="/register" element={<RegisterPage />} />
 
             <Route path="/login" element={<LoginPage />} />
 

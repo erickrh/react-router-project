@@ -7,21 +7,38 @@ const roles = {
   admin: {
     write: true,
     delete: true,
+    type: 'admin',
   },
   editor: {
     write: true,
     delete: false,
+    type: 'editor',
+  },
+  estandar: {
+    write: false,
+    delete: false,
+    type: 'estandar',
   },
 };
 
-const users = [
+const usuarios = [
   {
     name: 'Erick',
     rol: roles.admin,
+    slug: 'erick',
+    description: 'Hello world, I am a frontend developer!',
   },
   {
     name: 'e93',
     rol: roles.editor,
+    slug: 'e93',
+    description: 'I like the number ninety-three.',
+  },
+  {
+    name: 'slash',
+    rol: roles.estandar,
+    slug: 'slash',
+    description: 'Godfather solo',
   },
 ];
 
@@ -30,24 +47,33 @@ const AuthContext = React.createContext();
 function AuthProvider({ children }) {
   const navigate = useNavigate();
 
+  const rolesToNewUser = roles;
+
+  const [users, setUsers] = React.useState(usuarios);
+
   const [user, setUser] = React.useState(null);
 
   const [myPath, setMypath] = React.useState(null);
 
   const login = ({ username }) => {
-    const Isrol = users.find(user => (user.name === username) ? user.rol : null);
-    setUser({ username, Isrol });
+    const userContent = users.find(user => (user.name === username) ? user.rol : null);
+    setUser({ username, userContent });
     // navigate('/profile');
   };
 
   const logout = () => {
     setUser(null);
+    setMypath(null);
     navigate('/');
   };
   
   const auth = {
     user,
+    users,
     myPath,
+    rolesToNewUser,
+    setUser,
+    setUsers,
     setMypath,
     login,
     logout,
@@ -69,11 +95,10 @@ function AuthRoute(props) {
   const auth = useAuth();
   const location = useLocation();
 
-  React.useEffect(() => {
-    auth.setMypath(location.pathname);
-  }, []);
-
   if (!auth.user) {
+    React.useEffect(() => {
+      auth.setMypath(location.pathname);
+    }, []);
     return <Navigate to={'/login'} />;
   }
   return props.children;

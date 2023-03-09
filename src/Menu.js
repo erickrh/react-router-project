@@ -5,6 +5,7 @@ import { useAuth } from './auth';
 
 function Menu() {
   const auth = useAuth();
+  const userSlug = auth.user?.userContent?.slug;
 
   return (
     <nav>
@@ -13,6 +14,25 @@ function Menu() {
           if (route.private && !auth.user) return null;
 
           if (auth.user && route.text === 'Login') return null;
+
+          if (userSlug && route.text === 'Register') return null;
+          
+          if (!userSlug && route.text === 'Profile') return null;
+          
+          if (route.text === 'Profile') {
+            return (
+              <li key={route.to}>
+                <NavLink
+                  style={({ isActive }) => ({
+                    color: isActive ? 'red' : 'blue',
+                  })}
+                  to={`${route.to}/${userSlug}`}
+                >
+                  {route.text}
+                </NavLink>
+              </li>
+            );
+          }
 
           return (
             <li key={route.to}>
@@ -40,6 +60,11 @@ routes.push({
   private: false,
 });
 routes.push({
+  to: '/register',
+  text: 'Register',
+  private: true,
+});
+routes.push({
   to: '/blog',
   text: 'Blog',
   private: false,
@@ -59,11 +84,5 @@ routes.push({
   text: 'Logout',
   private: true,
 });
-routes.push({
-  to: '/privado',
-  text: 'Privado',
-  private: true,
-});
-
 
 export { Menu };

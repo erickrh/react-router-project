@@ -15,7 +15,9 @@ function usePosts() {
   const editPost = () => {
     setEditing(true);
     document.getElementById('msg').innerHTML = 'The post is now editable. Try to edit it.';
-    document.querySelector('.postContent').focus();
+    setTimeout(() => {
+      document.querySelector('.postContent').focus();
+    }, 100);
   };
 
   const savePost = slug => {

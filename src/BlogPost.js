@@ -9,8 +9,8 @@ function BlogPost(props) {
   const auth = useAuth();
   const blogpost = props.blogDataContent.find(post => post.slug === slug);
 
-  const authorityDelete = auth.user?.Isrol?.rol.delete;
-  const authorityEdit = auth.user?.Isrol?.rol.write;
+  const authorityDelete = auth.user?.userContent?.rol.delete;
+  const authorityEdit = auth.user?.userContent?.rol.write;
   
   // Acepta ruta fija (/blog) o dinámica (/blog/:slug), o incluso -1. Puede usarse también para eventos como por ejemplo si alguien no se ha autenticado a los 30 segundos redireccione a otra ruta.
   const returnToBlog = () => navigate('/blog');
